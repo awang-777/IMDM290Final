@@ -135,7 +135,7 @@ Animator:
   m_GameObject: {fileID: 324466474}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 3ba5df55de38cf04d86504dab0da7464, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f2b90fd3423524a7281e4bca2f4f6113, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -163,6 +163,18 @@ Animation:
   m_AnimatePhysics: 0
   m_UpdateMode: 0
   m_CullingType: 0
+--- !u!114 &324466478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 324466474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6854ec24cc89a4bd7a4e40f3ffbfc856, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1061057177
 GameObject:
   m_ObjectHideFlags: 0
@@ -472,6 +484,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 324466475}
+    - targetCorrespondingSourceObject: {fileID: 8702267591608313500, guid: e792b5f59bf315845ab4fbb393f59b18,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 324466478}
   m_SourcePrefab: {fileID: 100100000, guid: e792b5f59bf315845ab4fbb393f59b18, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
