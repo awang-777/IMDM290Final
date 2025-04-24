@@ -18,21 +18,21 @@ public class AnimationTester : MonoBehaviour
         if (keyboard == null)
             return;
             
-        // Set default state (Idle) when S is pressed
+        // idle = s key
         if (keyboard.sKey.isPressed)
         {
             animator.SetBool("isWalking", false);
             animator.SetBool("isCrouching", false);
         }
         
-        // Trigger Walk animation when W is pressed
+        // Trigger Walk = w key
         if (keyboard.wKey.isPressed)
         {
             animator.SetBool("isWalking", true);
             animator.SetBool("isCrouching", false);
         }
         
-        // Trigger Crouch animation when D is pressed
+        // crouch = d key
         if (keyboard.dKey.isPressed)
         {
             animator.SetBool("isCrouching", true);
