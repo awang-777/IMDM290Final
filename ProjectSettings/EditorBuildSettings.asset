@@ -5,21 +5,26 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 13f6f87036926f94ab0417ca1b31725c
   - enabled: 0
     path: Assets/Scenes/BasicScene.unity
     guid: bc761d9a86b33554f85fd11bb1f87ba3
+  - enabled: 1
+    path: Assets/VertexModeler/CowboyRIO/Animation/Start Screen.unity
+    guid: 140d07857b4194b4e89e6e285fb2b359
+  - enabled: 1
+    path: Assets/VertexModeler/CowboyRIO/Animation/Animation.unity
+    guid: 20452ff3a96e94712a3cd2fd6db505fc
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: fb878d6701cbd4131a9e003daa32242c,
       type: 2}
-    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: cf164e6d9c8854ced957bc79bc74a9e8,
+    com.unity.input.settings: {fileID: 11400000, guid: fac9b92a6f39348828dea9fbbc275e37,
+      type: 2}
+    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f,
       type: 3}
-    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: e3aee76b9372917449aef639e2f74814,
-      type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 0}
     com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 87b413c5a910b15498a98200731b1754,
-      type: 2}
-    xr.sdk.mock-hmd.settings: {fileID: 11400000, guid: b60614674389c471bafbab1477ff4c07,
       type: 2}
   m_UseUCBPForAssetBundles: 0

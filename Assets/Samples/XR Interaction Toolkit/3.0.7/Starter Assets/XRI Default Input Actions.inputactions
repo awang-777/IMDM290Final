@@ -1981,7 +1981,7 @@
                     "id": "65174b45-c2ee-4f90-93bb-fb4084eaaab3",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Press(behavior=2)",
                     "initialStateCheck": false
                 },
                 {
@@ -2482,7 +2482,7 @@
                     "name": "Submit",
                     "type": "Button",
                     "id": "eba98c2e-6268-4233-bb88-946287bc753c",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -2579,7 +2579,7 @@
                 {
                     "name": "",
                     "id": "57909bb4-1088-4975-9227-ecc87a305257",
-                    "path": "<Mouse>/leftButton",
+                    "path": "<XRController>{LeftHand}/triggerPressed",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -2590,7 +2590,7 @@
                 {
                     "name": "",
                     "id": "2740386d-d4b6-4342-903c-d9390783f04a",
-                    "path": "<Pen>/tip",
+                    "path": "<XRController>{RightHand}/triggerPressed",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -2920,7 +2920,7 @@
                 {
                     "name": "",
                     "id": "198e6869-709e-448d-96d4-27186c9d56e6",
-                    "path": "<Touchscreen>/Press",
+                    "path": "<OculusTouchController>/triggerPressed",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
