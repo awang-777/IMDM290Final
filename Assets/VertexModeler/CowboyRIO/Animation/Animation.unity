@@ -448,6 +448,8 @@ MonoBehaviour:
   forwardOffset: 0.2
   verticalOffset: 0.05
   moveSpeed: 2
+  previousCharacterPosition: {x: 0, y: 0, z: 0}
+  characterHeadOffset: {x: 0, y: 0, z: 0}
 --- !u!114 &324466482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -461,6 +463,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterAnimator: {fileID: 324466475}
+  walkParameterName: isWalking
+  crouchParameterName: isCrouching
   moveSpeed: 2
   headBone: {fileID: 551541036}
 --- !u!4 &551541036 stripped
