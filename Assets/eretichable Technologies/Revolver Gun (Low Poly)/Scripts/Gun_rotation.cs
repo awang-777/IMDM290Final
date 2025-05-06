@@ -2,22 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Gun_rotation : MonoBehaviour
 {
 	public float RotateSpeed = 25.0f;
-	
-	GameObject cylinderRotation = new GameObject();
+	public Transform cylinderRotation;
+	public void rotateCylinder() {
+		if(cylinderRotation != null) {
 
-	// Use this for initialization
-	void Start()
-	{
+			cylinderRotation.Rotate(Vector3.up, RotateSpeed);
 
-	}
-
-	// Update is called once per frame
-	void Update()
-	{
-		
+		}
 	}
 }

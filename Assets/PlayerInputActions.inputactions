@@ -1,0 +1,34 @@
+{
+    "name": "PlayerInputActions",
+    "maps": [
+        {
+            "name": "gun",
+            "id": "7f64a9c3-8d10-4e89-ab7d-3d6fc5c7f9b1",
+            "actions": [
+                {
+                    "name": "fire",
+                    "type": "Button",
+                    "id": "3a337020-1be3-4255-971f-0fa84a72aa3f",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "a758f513-a203-4aac-b3fc-08510a78ccd7",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "fire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
