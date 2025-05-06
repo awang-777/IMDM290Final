@@ -854,6 +854,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameplaySceneName: Animation
+  skipStartScreen: 1
 --- !u!4 &875904672
 Transform:
   m_ObjectHideFlags: 0
