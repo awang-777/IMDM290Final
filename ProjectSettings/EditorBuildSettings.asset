@@ -11,14 +11,17 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/BasicScene.unity
     guid: bc761d9a86b33554f85fd11bb1f87ba3
-  - enabled: 1
+  - enabled: 0
     path: Assets/VertexModeler/CowboyRIO/Animation/Start Screen.unity
     guid: 140d07857b4194b4e89e6e285fb2b359
-  - enabled: 1
+  - enabled: 0
     path: Assets/VertexModeler/CowboyRIO/Animation/Animation.unity
     guid: 20452ff3a96e94712a3cd2fd6db505fc
+  - enabled: 1
+    path: Assets/IMDM127 Final.unity
+    guid: 3861096fa472642f8b5d5c32392f47ea
   m_configObjects:
-    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: fb878d6701cbd4131a9e003daa32242c,
+    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: d18d0999c7f6f44e0870432a8aba7578,
       type: 2}
     com.unity.input.settings: {fileID: 11400000, guid: fac9b92a6f39348828dea9fbbc275e37,
       type: 2}
