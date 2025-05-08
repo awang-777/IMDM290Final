@@ -17,7 +17,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/VertexModeler/CowboyRIO/Animation/Animation.unity
     guid: 20452ff3a96e94712a3cd2fd6db505fc
-  - enabled: 0
+  - enabled: 1
     path: Assets/StartScreen.unity
     guid: 5a14490d6e1a84749aa2962a05e982ff
   - enabled: 1
