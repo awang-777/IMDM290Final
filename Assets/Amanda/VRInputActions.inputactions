@@ -1,0 +1,34 @@
+{
+    "name": "VRInputActions",
+    "maps": [
+        {
+            "name": "XR Controller",
+            "id": "640a0548-9986-42b0-8686-f164a96ef1ce",
+            "actions": [
+                {
+                    "name": "Shoot",
+                    "type": "Button",
+                    "id": "8df01f2f-c087-40da-a5f9-688cff027868",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "bd16b88b-a95c-4e98-9997-2a4c14ceb29e",
+                    "path": "<XRController>{RightHand}/triggerPressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

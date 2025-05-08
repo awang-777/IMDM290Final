@@ -5,7 +5,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class SimpleVRMovement : MonoBehaviour
 {
     [Header("Movement Settings")]
-    public float moveSpeed = 1.0f; // Movement speed
+    public float moveSpeed = 1.0f;
     
     [Header("Input References")]
     public InputActionReference moveInputAction; 
