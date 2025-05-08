@@ -1,15 +1,17 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MapTrigger : MonoBehaviour
+public class MapSelector : MonoBehaviour
 {
-    public int mapIndex = 1;
+    public string targetSceneName;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            PlayerPrefs.SetInt("SelectedMap", mapIndex);
-            SceneManager.LoadScene("IMDM127 Final");
+            PlayerPrefs.SetString("SelectedMap", targetSceneName);
+            PlayerPrefs.Save();
+            SceneManager.LoadScene(targetSceneName);
         }
     }
 }

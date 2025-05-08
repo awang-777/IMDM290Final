@@ -535,7 +535,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b97012dbc9c9d4ff29d55aa8534ffe05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapIndex: 3
+  targetSceneName: Amanda/Map3
 --- !u!65 &297943035
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -691,7 +691,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b97012dbc9c9d4ff29d55aa8534ffe05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapIndex: 1
+  targetSceneName: Amanda/Map1
 --- !u!65 &542869017
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1272,7 +1272,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b97012dbc9c9d4ff29d55aa8534ffe05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapIndex: 2
+  targetSceneName: Amanda/Map2
 --- !u!65 &1001679663
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1409,7 +1409,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

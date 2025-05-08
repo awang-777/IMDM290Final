@@ -1,19 +1,30 @@
 using UnityEngine;
-public class PlayerSpawner : MonoBehaviour
+
+public class MapSpawnManager : MonoBehaviour
 {
-    public Transform spawn1;
-    public Transform spawn2;
-    public Transform spawn3;
-    public GameObject playerPrefab;
-
-    void Start()
+    public GameObject playerPrefab; 
+    public Transform spawnPoint; 
+    private void Start()
     {
-        int mapIndex = PlayerPrefs.GetInt("SelectedMap", 1);
-        Transform chosenSpawn = spawn1;
+       
+        if (spawnPoint == null)
+            spawnPoint = this.transform;
 
-        if (mapIndex == 2) chosenSpawn = spawn2;
-        else if (mapIndex == 3) chosenSpawn = spawn3;
+        GameObject existingPlayer = GameObject.FindGameObjectWithTag("Player");
 
-        Instantiate(playerPrefab, chosenSpawn.position, chosenSpawn.rotation);
+        if (existingPlayer != null)
+        {
+            existingPlayer.transform.position = spawnPoint.position;
+            existingPlayer.transform.rotation = spawnPoint.rotation;
+        }
+        else if (playerPrefab != null)
+        {
+            GameObject newPlayer = Instantiate(playerPrefab, spawnPoint.position, spawnPoint.rotation);
+            newPlayer.tag = "Player";
+        }
+        else
+        {
+            Debug.LogError("No player prefab assigned and no player found in scene.");
+        }
     }
 }
