@@ -9,7 +9,7 @@ public class MapTrigger : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             PlayerPrefs.SetInt("SelectedMap", mapIndex);
-            SceneManager.LoadScene("GameScene");
+            SceneManager.LoadScene("IMDM127 Final");
         }
     }
 }
