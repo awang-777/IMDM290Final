@@ -105,7 +105,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""a758f513-a203-4aac-b3fc-08510a78ccd7"",
-                    ""path"": ""<Keyboard>/space"",
+                    ""path"": ""<OculusTouchController>{RightHand}/{PrimaryTrigger}"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
