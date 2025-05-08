@@ -4,25 +4,36 @@ using UnityEngine.InputSystem;
 public class SimpleVRGun : MonoBehaviour
 {
     [Header("References")]
-    public GameObject gunPrefab; 
-    public GameObject bulletPrefab; 
-    public Transform bulletSpawnPoint; 
+    public GameObject gunPrefab;
+    public GameObject bulletPrefab;
+    public Transform bulletSpawnPoint;
     
     [Header("Gun Positioning")]
-    public Vector3 gunPosition = new Vector3(0.2f, -0.2f, 0.5f); 
+    public Vector3 gunPosition = new Vector3(0.2f, -0.2f, 0.5f);
     
     [Header("Bullet Settings")]
-    public float bulletSpeed = 30f; 
+    public float bulletSpeed = 30f;
     public float bulletLifetime = 5f;
+    
+    [Header("Crosshair Settings")]
+    public float crosshairDistance = 3f;
+    public Vector2 crosshairOffset = new Vector2(0.015f, -0.015f);
     
     [Header("Input")]
     public InputActionReference shootAction;
     
     private GameObject gun;
     private GameObject crosshair;
+    private Camera mainCamera;
     
     void Start()
     {
+        mainCamera = GetComponent<Camera>();
+        if (mainCamera == null)
+        {
+            mainCamera = Camera.main;
+        }
+        
         gun = Instantiate(gunPrefab, transform);
         gun.transform.localPosition = gunPosition;
         gun.transform.localRotation = Quaternion.identity;
@@ -55,11 +66,8 @@ public class SimpleVRGun : MonoBehaviour
     void CreateCrosshair()
     {
         crosshair = new GameObject("Crosshair");
-        crosshair.transform.parent = transform;
-        crosshair.transform.localPosition = new Vector3(0, 0, 1);
         
         SpriteRenderer renderer = crosshair.AddComponent<SpriteRenderer>();
-        
         Texture2D tex = new Texture2D(16, 16);
         Color clear = new Color(0, 0, 0, 0);
         Color white = Color.white;
@@ -79,12 +87,32 @@ public class SimpleVRGun : MonoBehaviour
         Sprite crosshairSprite = Sprite.Create(tex, new Rect(0, 0, 16, 16), new Vector2(0.5f, 0.5f));
         renderer.sprite = crosshairSprite;
         renderer.sortingOrder = 1000;
+        
+        UpdateCrosshairPosition();
+    }
+    
+    void Update()
+    {
+        UpdateCrosshairPosition();
+    }
+    
+    void UpdateCrosshairPosition()
+    {
+        if (crosshair == null || mainCamera == null)
+            return;
+            
+        Vector3 position = transform.position + transform.forward * crosshairDistance;
+        
+        position += transform.right * crosshairOffset.x;
+        position += transform.up * crosshairOffset.y;
+        
+        crosshair.transform.position = position;
+        crosshair.transform.rotation = transform.rotation;
     }
     
     void OnShoot(InputAction.CallbackContext context)
     {
         FireBullet();
-        
         Debug.Log("Shot fired!");
     }
     
@@ -96,13 +124,14 @@ public class SimpleVRGun : MonoBehaviour
             return;
         }
         
-        Vector3 spawnPos = bulletSpawnPoint != null 
-            ? bulletSpawnPoint.position 
-            : transform.position + transform.forward * 0.5f;
-            
-        GameObject bullet = Instantiate(bulletPrefab, spawnPos, Quaternion.identity);
+        Vector3 shootDirection = transform.forward;
         
-        bullet.transform.forward = transform.forward;
+        Vector3 spawnPos = bulletSpawnPoint != null
+            ? bulletSpawnPoint.position
+            : transform.position + shootDirection * 0.5f;
+            
+        GameObject bullet = Instantiate(bulletPrefab, spawnPos, Quaternion.LookRotation(shootDirection));
+        bullet.transform.forward = shootDirection;
         
         Rigidbody rb = bullet.GetComponent<Rigidbody>();
         if (rb == null)
@@ -111,7 +140,7 @@ public class SimpleVRGun : MonoBehaviour
             rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
         }
         
-        rb.linearVelocity = transform.forward * bulletSpeed;
+        rb.linearVelocity = shootDirection * bulletSpeed;
         
         Destroy(bullet, bulletLifetime);
     }

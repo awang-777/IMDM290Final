@@ -6,37 +6,34 @@ public class ReturnToHomeWhenEnemiesCleared : MonoBehaviour
 {
     [Header("Settings")]
     public string homeSceneName = "HomeScene"; 
-    public float delayBeforeReturn = 3.0f; 
-    public bool checkContinuously = true; 
-    public float checkInterval = 2.0f; 
+    public float delayBeforeReturn = 3.0f;
+    public float checkInterval = 2.0f;
     
     [Header("Victory UI")]
-    public GameObject victoryMessage; 
+    public GameObject victoryMessage;
+    
     private bool hasReturned = false;
-    private float nextCheckTime = 0f;
+    private int initialEnemyCount = 0;
+    private float timeSinceLastCheck = 0f;
     
     void Start()
     {
-
         if (victoryMessage != null)
         {
             victoryMessage.SetActive(false);
         }
-
-        if (!checkContinuously)
-        {
-            StartCoroutine(CheckEnemiesPeriodically());
-        }
+        
+        initialEnemyCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
+        Debug.Log($"Initial enemy count: {initialEnemyCount}");
+        
+        StartCoroutine(DelayedStart());
     }
     
-    void Update()
+    IEnumerator DelayedStart()
     {
-
-        if (checkContinuously && !hasReturned && Time.time >= nextCheckTime)
-        {
-            CheckIfAllEnemiesCleared();
-            nextCheckTime = Time.time + 0.5f; 
-        }
+        yield return new WaitForSeconds(3f);
+        
+        StartCoroutine(CheckEnemiesPeriodically());
     }
     
     IEnumerator CheckEnemiesPeriodically()
@@ -44,18 +41,32 @@ public class ReturnToHomeWhenEnemiesCleared : MonoBehaviour
         while (!hasReturned)
         {
             yield return new WaitForSeconds(checkInterval);
-            CheckIfAllEnemiesCleared();
+            
+            if (!hasReturned)
+            {
+                CheckIfAllEnemiesCleared();
+            }
         }
     }
     
     void CheckIfAllEnemiesCleared()
     {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        GameObject[] taggedEnemies = GameObject.FindGameObjectsWithTag("Enemy");
         
-
-        if (enemies.Length == 0)
+        int enemiesWithController = 0;
+        foreach (GameObject enemy in taggedEnemies)
         {
-            Debug.Log("All enemies cleared!");
+            if (enemy.GetComponent<EnemyController>() != null)
+            {
+                enemiesWithController++;
+            }
+        }
+        
+        Debug.Log($"Current enemy count: {enemiesWithController}");
+        
+        if (initialEnemyCount > 0 && enemiesWithController == 0)
+        {
+            Debug.Log("All enemies have been cleared!");
             hasReturned = true;
             StartCoroutine(ReturnToHomeAfterDelay());
         }
@@ -69,7 +80,14 @@ public class ReturnToHomeWhenEnemiesCleared : MonoBehaviour
         }
         
         yield return new WaitForSeconds(delayBeforeReturn);
-
-        SceneManager.LoadScene(homeSceneName);
+        
+        if (SceneUtility.GetBuildIndexByScenePath(homeSceneName) >= 0)
+        {
+            SceneManager.LoadScene(homeSceneName);
+        }
+        else
+        {
+            Debug.LogError($"Scene '{homeSceneName}' does not exist in build settings. Cannot load.");
+        }
     }
 }

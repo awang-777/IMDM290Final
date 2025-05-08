@@ -5,7 +5,7 @@ public class EnemyController : MonoBehaviour
 {
     [Header("Enemy Settings")]
     public float health = 100f;
-    public float moveSpeed = 0f; // Set to 0 for stationary enemies
+    public float moveSpeed = 0f;
     
     [Header("Shooting Settings")]
     public GameObject bulletPrefab;
@@ -14,7 +14,7 @@ public class EnemyController : MonoBehaviour
     public float bulletSpeed = 15f;
     public float minShootInterval = 3f;
     public float maxShootInterval = 7f;
-    public float shootingAccuracy = 0.9f; // 1.0 is perfect accuracy, lower values add randomness
+    public float shootingAccuracy = 0.9f;
     
     private bool isDead = false;
     private TargetHealth targetHealth;
@@ -29,44 +29,31 @@ public class EnemyController : MonoBehaviour
                 player = playerObj.transform;
         }
         
-        // Get or add TargetHealth component
+        // Setup target health
         targetHealth = GetComponent<TargetHealth>();
         if (targetHealth == null)
         {
             targetHealth = gameObject.AddComponent<TargetHealth>();
         }
-        
-        // Set the health in TargetHealth to match our health
         targetHealth.maxHealth = health;
         
-        // Start shooting routine
+        // Setup renderer
+        Renderer renderer = GetComponent<Renderer>();
+        if (renderer != null)
+        {
+            renderer.material = new Material(renderer.material);
+        }
+        
+        // Start shooting coroutine
         StartCoroutine(ShootAtPlayer());
     }
     
-    void Update()
-    {
-        if (isDead)
-            return;
-            
-        // Always face the player
-        if (player != null)
-        {
-            Vector3 directionToPlayer = player.position - transform.position;
-            directionToPlayer.y = 0; // Keep enemy upright
-            
-            if (directionToPlayer != Vector3.zero)
-            {
-                Quaternion lookRotation = Quaternion.LookRotation(directionToPlayer);
-                transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
-            }
-        }
-    }
+    // Update method removed entirely since we don't want rotation updates
     
     IEnumerator ShootAtPlayer()
     {
         while (!isDead)
         {
-            // Wait random time between shots
             float waitTime = Random.Range(minShootInterval, maxShootInterval);
             yield return new WaitForSeconds(waitTime);
             
@@ -79,13 +66,11 @@ public class EnemyController : MonoBehaviour
     
     void FireAtPlayer()
     {
-        if (bulletPrefab == null || gunPosition == null)
+        if (bulletPrefab == null || gunPosition == null || player == null)
             return;
             
-        // Calculate direction to player with some inaccuracy
         Vector3 directionToPlayer = player.position - gunPosition.position;
         
-        // Add randomness based on accuracy
         if (shootingAccuracy < 1.0f)
         {
             float randomFactor = 1.0f - shootingAccuracy;
@@ -98,42 +83,25 @@ public class EnemyController : MonoBehaviour
         
         directionToPlayer.Normalize();
         
-        // Create bullet
+        // Create the bullet with the direction to player, but don't rotate the enemy
         GameObject bullet = Instantiate(bulletPrefab, gunPosition.position, Quaternion.LookRotation(directionToPlayer));
-        
-        // Add enemy tag to bullet so player can distinguish enemy bullets
         bullet.tag = "EnemyBullet";
         
-        // Make enemy bullets look different (optional)
         Renderer bulletRenderer = bullet.GetComponent<Renderer>();
         if (bulletRenderer != null)
         {
             bulletRenderer.material.color = Color.red;
         }
         
-        // Set velocity - UPDATED to use linearVelocity instead of velocity
         Rigidbody rb = bullet.GetComponent<Rigidbody>();
         if (rb != null)
         {
             rb.linearVelocity = directionToPlayer * bulletSpeed;
         }
         
-        // Destroy bullet after 5 seconds
         Destroy(bullet, 5f);
     }
     
-    // Listen for death events from TargetHealth to update our state
-    void OnEnable()
-    {
-        // Subscribe to health changes if needed in the future
-    }
-    
-    void OnDisable()
-    {
-        // Unsubscribe if needed
-    }
-    
-    // This function can be called to immediately mark as dead (e.g., from TargetHealth)
     public void MarkAsDead()
     {
         isDead = true;
