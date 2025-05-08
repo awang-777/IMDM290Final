@@ -9,6 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1366898511348816083}
+  - component: {fileID: 1480106740973140181}
+  - component: {fileID: 225930490294103947}
+  - component: {fileID: 598743182884425492}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -33,6 +36,64 @@ Transform:
   - {fileID: 2678440635368155143}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 40.359, z: 0}
+--- !u!114 &1480106740973140181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 131060343325679729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8d4007e437a246629fa2279cee1753c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  moveSpeed: 0
+  bulletPrefab: {fileID: 5519742358286033648, guid: 4d05f98b3aa1148cb89d702129e5293a,
+    type: 3}
+  gunPosition: {fileID: 2678440635368155143}
+  player: {fileID: 3856962512604154905, guid: 050218bad7ede4536bd0b82217965d28, type: 3}
+  bulletSpeed: 2
+  minShootInterval: 3
+  maxShootInterval: 7
+  shootingAccuracy: 0.9
+--- !u!114 &225930490294103947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 131060343325679729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94141bffee09147c5ac1b6bad7ab5c7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+--- !u!136 &598743182884425492
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 131060343325679729}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2.2218869
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.61094344, z: 0}
 --- !u!1 &7763780730985499136
 GameObject:
   m_ObjectHideFlags: 0
@@ -43,7 +104,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2678440635368155143}
   m_Layer: 0
-  m_Name: Gun
+  m_Name: GunPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

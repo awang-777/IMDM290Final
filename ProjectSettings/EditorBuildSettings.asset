@@ -17,7 +17,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/VertexModeler/CowboyRIO/Animation/Animation.unity
     guid: 20452ff3a96e94712a3cd2fd6db505fc
-  - enabled: 0
+  - enabled: 1
     path: Assets/Amanda/StartScreen.unity
     guid: 5a14490d6e1a84749aa2962a05e982ff
   - enabled: 0
@@ -26,10 +26,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Amanda/Amanda Final.unity
     guid: 2720b0cc1bbd24845ab878f37af3c62d
-  - enabled: 1
+  - enabled: 0
     path: Assets/Amanda/Map1.unity
     guid: 36314835591fb4aa49268ea826825113
-  - enabled: 0
+  - enabled: 1
     path: Assets/Amanda/Map2.unity
     guid: ce9737b42ed6c4894837dd5e55bb04b9
   - enabled: 0

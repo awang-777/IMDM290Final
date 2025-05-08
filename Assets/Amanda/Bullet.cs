@@ -6,37 +6,25 @@ public class Bullet : MonoBehaviour
     
     void OnCollisionEnter(Collision collision)
     {
-        TargetHealth health = collision.gameObject.GetComponent<TargetHealth>();
-        if (health != null)
-        {
-            health.TakeDamage(damage);
-        }
-        Destroy(gameObject);
-    }
-}
-
-public class TargetHealth : MonoBehaviour
-{
-    public float maxHealth = 100f;
-    private float currentHealth;
-    
-    void Start()
-    {
-        currentHealth = maxHealth;
-    }
-    
-    public void TakeDamage(float amount)
-    {
-        currentHealth -= amount;
+        Debug.Log("Bullet collided with: " + collision.gameObject.name);
         
-        if (currentHealth <= 0)
+        // Check if this is an enemy bullet hitting the player
+        if (gameObject.CompareTag("EnemyBullet") && collision.gameObject.CompareTag("Player"))
         {
-            Die();
+            Debug.Log("Player hit by enemy bullet!");
+            // Player damage logic here
         }
-    }
-    
-    private void Die()
-    {
+        // Check if this is a player bullet hitting an enemy
+        else
+        {
+            TargetHealth health = collision.gameObject.GetComponent<TargetHealth>();
+            if (health != null)
+            {
+                Debug.Log("Hit object with TargetHealth, applying damage");
+                health.TakeDamage(damage);
+            }
+        }
+        
         Destroy(gameObject);
     }
 }
