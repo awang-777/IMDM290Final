@@ -64,25 +64,29 @@ public class Bullet_Travel : MonoBehaviour
         fireBullet();
     }
 
-    void fireBullet()
-    {
-        if (currentBullets <= 0)
-        {
+    void fireBullet() {
+        if (currentBullets <= 0) {
             Debug.Log("Out of Bullets! Reloading...");
             return;
         }
 
         gunRotation?.rotateCylinder();
 
-        if (bulletPrefab != null && firePoint != null)
-        {
+        if (bulletPrefab != null && firePoint != null) {
             GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
             bullet.SetActive(true);
 
+            // Apply velocity
             Rigidbody rigidbody = bullet.GetComponent<Rigidbody>();
-            if (rigidbody != null)
-            {
-                rigidbody.linearVelocity = firePoint.forward * bulletSpeed; // fixed to use `velocity`
+            if (rigidbody != null) {
+                rigidbody.linearVelocity = firePoint.forward * bulletSpeed;
+            }
+
+            // Enable trail
+            TrailRenderer trail = bullet.GetComponent<TrailRenderer>();
+            if (trail != null) {
+                trail.Clear(); // optional, for cleaner trail start
+                trail.emitting = true;
             }
 
             Destroy(bullet, 5f);
