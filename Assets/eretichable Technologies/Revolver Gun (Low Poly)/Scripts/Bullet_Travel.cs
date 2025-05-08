@@ -12,6 +12,10 @@ public class Bullet_Travel : MonoBehaviour
 
     public TextMeshProUGUI ammoCount;
 
+    public AudioClip fireSound;
+    public AudioClip reloadSound;
+
+    private AudioSource audioSource;
     private GameObject bulletPrefab;
     private int currentBullets;
     private float reloadTimer;
@@ -51,6 +55,12 @@ public class Bullet_Travel : MonoBehaviour
             muzzleFlash.SetActive(false);
         }
 
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+
         updateAmmoUI();
     }
 
@@ -76,20 +86,23 @@ public class Bullet_Travel : MonoBehaviour
             GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
             bullet.SetActive(true);
 
-            // Apply velocity
             Rigidbody rigidbody = bullet.GetComponent<Rigidbody>();
             if (rigidbody != null) {
                 rigidbody.linearVelocity = firePoint.forward * bulletSpeed;
             }
 
-            // Enable trail
             TrailRenderer trail = bullet.GetComponent<TrailRenderer>();
             if (trail != null) {
-                trail.Clear(); // optional, for cleaner trail start
+                trail.Clear();
                 trail.emitting = true;
             }
 
             Destroy(bullet, 5f);
+        }
+
+        if (fireSound != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(fireSound);
         }
 
         showMuzzleFlash();
@@ -123,6 +136,10 @@ public class Bullet_Travel : MonoBehaviour
             {
                 currentBullets++;
                 reloadTimer = 0f;
+                if (reloadSound != null && audioSource != null)
+                {
+                    audioSource.PlayOneShot(reloadSound);
+                }
                 Debug.Log("Reloaded one bullet. Current: " + currentBullets);
                 updateAmmoUI();
             }
@@ -137,3 +154,4 @@ public class Bullet_Travel : MonoBehaviour
         }
     }
 }
+
