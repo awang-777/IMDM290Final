@@ -17,7 +17,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/VertexModeler/CowboyRIO/Animation/Animation.unity
     guid: 20452ff3a96e94712a3cd2fd6db505fc
-  - enabled: 1
+  - enabled: 0
     path: Assets/StartScreen.unity
     guid: 5a14490d6e1a84749aa2962a05e982ff
   - enabled: 1
@@ -28,7 +28,7 @@ EditorBuildSettings:
       type: 2}
     com.unity.input.settings: {fileID: 11400000, guid: fac9b92a6f39348828dea9fbbc275e37,
       type: 2}
-    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f,
+    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 0be0028c24f2a4c14a96b6aa39055933,
       type: 3}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: e3aee76b9372917449aef639e2f74814,
       type: 2}
